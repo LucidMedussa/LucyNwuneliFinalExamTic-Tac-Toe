@@ -29,6 +29,7 @@ async function test1() {
 
         // Check if "X" is shown in cell 1
         let cell1Content = await driver.findElement(By.id("cell1")).getText();
+        console.log(cell1Content);
         if (cell1Content.trim() === 'x') {
             console.log('Test Success: X is shown in cell 1');
         } else {
