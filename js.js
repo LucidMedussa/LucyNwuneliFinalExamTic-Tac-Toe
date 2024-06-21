@@ -112,7 +112,7 @@ var moves = 0,
         player: 0,
         computer: 0
     },
-    xText = "<span class=\"x\">&times;</class>",
+    xText = "x",
     oText = "<span class=\"o\">o</class>",
     playerText = xText,
     computerText = oText,
