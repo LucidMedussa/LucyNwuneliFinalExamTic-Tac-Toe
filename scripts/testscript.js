@@ -3,7 +3,7 @@
 const { By, Builder } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
-async function test1() {
+async function test() {
     // Set Chrome options
     let options = new chrome.Options();
     options.addArguments('headless');
@@ -40,4 +40,4 @@ async function test1() {
     }
 }
 
-test1();
+test();
