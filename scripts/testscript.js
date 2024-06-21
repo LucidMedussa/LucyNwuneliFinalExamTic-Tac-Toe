@@ -1,37 +1,40 @@
-const { By, Builder, until } = require("selenium-webdriver");
+const { By, Key, Builder } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
-async function test1() {
+async function test_case() {
     // Set Chrome options
     let options = new chrome.Options();
     options.addArguments('headless');
     options.addArguments('disable-gpu');
     options.setChromeBinaryPath('/usr/bin/google-chrome');
 
-    // Create a Driver
+    // Create a driver
     let driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
 
     try {
         // Send driver to website
-        await driver.get("http://54.242.202.176/");
+        await driver.get("http://3.81.20.62/");
+        console.log('Website opened');
+        await driver.sleep(1000);
 
-        // Set window size
-        await driver.manage().window().setRect({ width: 652, height: 672 });
-
-        // Wait for the "Play" button to be interactable and click it
-        let playButton = await driver.wait(until.elementIsVisible(driver.findElement(By.id("okBtn"))), 10000);
+        let playButton = await driver.findElement(By.id('okBtn'));
         await playButton.click();
+        console.log('Play button clicked');
 
-        // Wait for cell 1 (cell 0 in array index) to be interactable and click it
-        let cell1 = await driver.wait(until.elementIsVisible(driver.findElement(By.id("cell0"))), 10000);
-        await cell1.click();
+        // Find and click on a cell
+        let cell = await driver.findElement(By.id('cell0'));
+        await cell.click();
+        console.log('Cell clicked');
 
-        // Check if "X" is shown in cell 1
-        let cell1Content = await driver.findElement(By.id("cell0")).getText();
-        console.log(cell1Content);
-        
-        // Normalize comparison to lowercase for case insensitivity
-        if (cell1Content.trim().toLocaleLowerCase === "x") {
+        // Wait for a brief moment to ensure the update is reflected (adjust as necessary)
+        await driver.sleep(1000);
+
+        // Check the content of the cell after click
+        let cellContent = await cell.getAttribute('innerHTML');
+        console.log('Cell content:', cellContent);
+
+        // Check if it shows "<span class=\"x\">&times;</span>"
+        if (cellContent.trim() === '<span class="x">×</span>') {
             console.log('Test Success');
         } else {
             console.log('Test Failed');
@@ -43,4 +46,4 @@ async function test1() {
     }
 }
 
-test1();
+test_case();
