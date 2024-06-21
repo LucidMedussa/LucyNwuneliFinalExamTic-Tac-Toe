@@ -31,7 +31,7 @@ async function test1() {
         console.log(cell1Content);
         
         // Normalize comparison to lowercase for case insensitivity
-        if (cell1Content.trim().toLocaleLowerCase === '<span class=\"x\">&times;</class>'.toLocaleLowerCase()) {
+        if (cell1Content.trim().toLocaleLowerCase === playerText) {
             console.log('Test Success');
         } else {
             console.log('Test Failed');
