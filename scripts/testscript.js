@@ -31,10 +31,10 @@ async function test1() {
         console.log(cell1Content);
         
         // Normalize comparison to lowercase for case insensitivity
-        if (cell1Content.trim === '<span class=\"x\">&times;</class>') {
-            console.log('Test Success: X is shown in cell 0');
+        if (cell1Content.trim().toLocaleLowerCase === '<span class=\"x\">&times;</class>'.toLocaleLowerCase()) {
+            console.log('Test Success');
         } else {
-            console.log('Test Failed: X is not shown in cell 0');
+            console.log('Test Failed');
         }
     } catch (error) {
         console.log('An error occurred:', error);
