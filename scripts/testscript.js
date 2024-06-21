@@ -24,16 +24,16 @@ async function test1() {
         await playButton.click();
 
         // Wait for cell 1 to be interactable and click it
-        let cell1 = await driver.wait(until.elementIsVisible(driver.findElement(By.id("cell1"))), 10000);
+        let cell1 = await driver.wait(until.elementIsVisible(driver.findElement(By.id("cell0"))), 10000);
         await cell1.click();
 
         // Check if "X" is shown in cell 1
-        let cell1Content = await driver.findElement(By.id("cell1")).getText();
+        let cell1Content = await driver.findElement(By.id("cell0")).getText();
         console.log(cell1Content);
         if (cell1Content.trim() == 'x') {
-            console.log('Test Success: X is shown in cell 1');
+            console.log('Test Success: X is shown in cell 0');
         } else {
-            console.log('Test Failed: X is not shown in cell 1');
+            console.log('Test Failed: X is not shown in cell 0');
         }
     } catch (error) {
         console.log('An error occurred:', error);
