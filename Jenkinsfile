@@ -2,6 +2,8 @@ pipeline{
 agent { label 'aws'}
 environment{
 TOKENAWS = credentials('controller-ssh-key')
+TEST_RESULT_FILE = 'test_result.txt'
+
 }
 
     stages{
