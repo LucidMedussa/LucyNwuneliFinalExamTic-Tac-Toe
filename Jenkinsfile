@@ -19,6 +19,11 @@ TOKENAWS = credentials('controller-ssh-key')
                     //Debugging printing the output
                     echo "Test Output: ${output}"
 
+                    //Ensure TEST_RESULT_FILE is not null
+                    if (!env.TEST_RESULT_FILE){
+                        error("TEST_RESULT_FILE is not defined")
+                    }
+
                     //Write the result to a file
 
                     if(output.contains('Test Success')){
