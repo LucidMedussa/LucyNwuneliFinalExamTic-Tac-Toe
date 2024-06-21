@@ -30,7 +30,7 @@ async function test1() {
         // Check if "X" is shown in cell 1
         let cell1Content = await driver.findElement(By.id("cell0")).getText();
         console.log(cell1Content);
-        if (cell1Content.trim() == 'x') {
+        if (cell1Content.trim().toLowerCase() === 'x') {
             console.log('Test Success: X is shown in cell 0');
         } else {
             console.log('Test Failed: X is not shown in cell 0');
