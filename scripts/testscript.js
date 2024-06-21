@@ -1,9 +1,8 @@
-
 // Import necessary modules
-const { By, Builder } = require("selenium-webdriver");
+const { By, Builder, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
-async function test() {
+async function test1() {
     // Set Chrome options
     let options = new chrome.Options();
     options.addArguments('headless');
@@ -20,11 +19,13 @@ async function test() {
         // Set window size
         await driver.manage().window().setRect({ width: 652, height: 672 });
 
-        // Click the "Play" button to start the game
-        await driver.findElement(By.id("okBtn")).click();
+        // Wait for the "Play" button to be interactable and click it
+        let playButton = await driver.wait(until.elementIsVisible(driver.findElement(By.id("okBtn"))), 10000);
+        await playButton.click();
 
-        // Click on cell 1
-        await driver.findElement(By.id("cell1")).click();
+        // Wait for cell 1 to be interactable and click it
+        let cell1 = await driver.wait(until.elementIsVisible(driver.findElement(By.id("cell1"))), 10000);
+        await cell1.click();
 
         // Check if "X" is shown in cell 1
         let cell1Content = await driver.findElement(By.id("cell1")).getText();
@@ -40,4 +41,5 @@ async function test() {
     }
 }
 
-test();
+test1();
+
